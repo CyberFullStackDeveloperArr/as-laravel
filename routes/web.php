@@ -18,9 +18,8 @@ Route::get('/contact', function () {
 Route::get('/posts', function () {
  return view('posts', ['title' => 'My Blog Gw', 'posts' => Post::all()]);
 });
-Route::get('/posts/{slug}', function ($slug) {
-
-    $post = Post::find($slug);
+Route::get('/posts/{post:slug}', function (Post $post) {
+    // $post = Post::find($slug);
     return view('post', ['title' => 'Single Post Jamal', 'post' => $post]);
 });
 
