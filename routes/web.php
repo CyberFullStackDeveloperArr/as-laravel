@@ -3,7 +3,7 @@
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
-
+use App\Models\User;
 
 Route::get('/', function () {
  return view('welcome');
@@ -19,8 +19,10 @@ Route::get('/posts', function () {
  return view('posts', ['title' => 'My Blog Gw', 'posts' => Post::all()]);
 });
 Route::get('/posts/{post:slug}', function (Post $post) {
-    // $post = Post::find($slug);
-    return view('post', ['title' => 'Single Post Jamal', 'post' => $post]);
+ return view('post', ['title' => 'Single Post Jamal', 'post' => $post]);
+});
+Route::get('/authors/{user}', function (User $user) {
+ return view('posts', ['title' => 'Articles by' . $user->name, 'posts' => $user->posts]);
 });
 
 Route::get('/about', function () {
